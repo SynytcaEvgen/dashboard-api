@@ -5,10 +5,11 @@ import HttpError from "../errors/http-errors.class";
 import { inject, injectable } from "inversify";
 import TYPES from "../types";
 import 'reflect-metadata';
+import IUserController from "./users.interface";
 
 
 @injectable()
-class UserController extends BaseController {
+class UserController extends BaseController implements IUserController {
     constructor(
         @inject(TYPES.ILogger) private loggerService: LoggerService
     ) {
@@ -21,11 +22,15 @@ class UserController extends BaseController {
     }
 
     login(req: Request, res: Response, next: NextFunction) {
-        next(new HttpError(401, 'authorisation error'))
-        // this.ok(res, 'login');
+        // next(new HttpError(401, 'authorisation error'))
+        this.ok(res, 'login');
+        next();
     };
     register(req: Request, res: Response, next: NextFunction) {
+        
         this.ok(res, 'register');
+        
+        next();
         
     };
 };
