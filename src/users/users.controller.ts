@@ -18,6 +18,8 @@ class UserController extends BaseController implements IUserController {
 
 	login(req: Request, res: Response, next: NextFunction): void {
 		// next(new HttpError(401, 'authorisation error'))
+
+		console.log('dfdfff');
 		this.ok(res, 'login');
 		next();
 	}
