@@ -29,8 +29,10 @@ abstract class BaseController {
 	protected bindRoutes(routes: IControllerRoute[]): void {
 		for (const route of routes) {
 			this.logger.log(`[${route.method}] ${route.path}`);
+			const middleware = route.middlewares?.map((item) => item.execute.bind(item)); // привязываем утеряный контекст
 			const handler = route.func.bind(this); // привязываем контекст или передаем контекст
-			this.router[route.method](route.path, handler); // для route.func конетекст будет утерян
+			const pipeline = middleware ? [...middleware, handler] : handler;
+			this.router[route.method](route.path, pipeline); // для route.func конетекст будет утерян
 		}
 	}
 }

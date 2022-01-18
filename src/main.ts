@@ -8,6 +8,8 @@ import TYPES from './types';
 import { Container, ContainerModule, interfaces } from 'inversify';
 import 'reflect-metadata';
 import IUserController from './users/users.interface';
+import IUserService from './users/users.service.interface';
+import UsersService from './users/users.service';
 
 // const logger = new LoggerService();
 // const app = new App(logger, new UserController(logger), new ExeptionFilter(logger));
@@ -24,6 +26,7 @@ const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<ILogger>(TYPES.ILogger).to(LoggerService);
 	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter);
 	bind<IUserController>(TYPES.UserController).to(UserController);
+	bind<IUserService>(TYPES.UserService).to(UsersService);
 	bind<App>(TYPES.Aplication).to(App);
 });
 
