@@ -46,7 +46,7 @@ class UserController extends BaseController implements IUserController {
 		if (!result) {
 			return next(new HttpError(422, `User ${body.name} it is exist`));
 		}
-		this.ok(res, { email: result.email });
+		this.ok(res, { email: result.email, id: result.id });
 		// next();
 	}
 }

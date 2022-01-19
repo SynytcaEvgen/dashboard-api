@@ -2,3 +2,6 @@
 /node_modules
 /.npmignore
 /.clinic
+/.env
+/prisma/dev.db
+/prisma/dev.db-jurnal

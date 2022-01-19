@@ -16,8 +16,8 @@ class UserEntity {
 		return this._password;
 	}
 
-	public async setPasword(data: string): Promise<void> {
-		this._password = await hash(data, 10);
+	public async setPasword(data: string, salt: number): Promise<void> {
+		this._password = await hash(data, salt);
 	}
 }
 
