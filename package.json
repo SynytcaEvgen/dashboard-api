@@ -11,6 +11,7 @@
     "lint": "eslint ./src/**",
     "lint:fix": "eslint ./src/** --fix",
     "start": "node ./dist/main.js",
+    "dev:test": "jest",
     "generate": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
