@@ -7,7 +7,7 @@ import TYPES from '../types';
 import IConfigService from '../config/consfig.service.interface';
 import IUsersRepository from './users.repository.interface';
 import { UserModel } from '@prisma/client';
-import { hash, compare } from 'bcryptjs';
+import { compare } from 'bcryptjs';
 
 @injectable()
 class UsersService implements IUserService {
@@ -36,6 +36,10 @@ class UsersService implements IUserService {
 		} else {
 			return false;
 		}
+	}
+
+	async getUserInfo(email: string): Promise<UserModel | null> {
+		return this.usersRepository.find(email);
 	}
 }
 

@@ -9,6 +9,7 @@ import IExeptionFilter from './errors/exeption.filter.interface';
 import IConfigService from './config/consfig.service.interface';
 import UserController from './users/users.controller';
 import PrismaService from './database/prisma.service';
+import AuthMiddleware from './common/auth.middleware';
 
 @injectable()
 class App {
@@ -29,6 +30,8 @@ class App {
 
 	useMiddelware(): void {
 		this.app.use(json());
+		const authMiddleware = new AuthMiddleware(this.configService.get('SECRET'));
+		this.app.use(authMiddleware.execute.bind(authMiddleware));
 	}
 
 	useRoutes(): void {
