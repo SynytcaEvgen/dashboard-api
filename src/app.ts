@@ -51,6 +51,10 @@ class App {
 
 		this.logger.log(`[Server] run to port - ${this.port}`);
 	}
+
+	public close(): void {
+		this.server.close();
+	}
 }
 
 export default App;

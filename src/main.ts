@@ -38,13 +38,12 @@ const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<App>(TYPES.Aplication).to(App);
 });
 
-function main(): IMainReturn {
+async function main(): Promise<IMainReturn> {
 	const appContainer = new Container();
 	appContainer.load(appBindings);
 	const app = appContainer.get<App>(TYPES.Aplication);
-	app.init();
+	await app.init();
 	return { appContainer, app };
 }
-
-export const { app, appContainer } = main();
-export { appBindings };
+const mainPromise = main();
+export { appBindings, mainPromise };

@@ -37,8 +37,9 @@ let createUser: UserModel | null;
 
 describe('User Service', () => {
 	it('createUser', async () => {
-		configService.get = jest.fn().mockReturnValueOnce(1);
+		configService.get = jest.fn().mockReturnValueOnce(1); // эмитация конфига
 		usersRepository.create = jest.fn().mockImplementationOnce(
+			// эмитация создания пользователя
 			(user: UserEntity): UserModel => ({
 				name: user.name,
 				email: user.email,
@@ -56,8 +57,9 @@ describe('User Service', () => {
 	});
 
 	it('validation - success', async () => {
-		usersRepository.find = jest.fn().mockReturnValueOnce(createUser);
+		usersRepository.find = jest.fn().mockReturnValueOnce(createUser); // эмитация вызова метода
 		const res = await userService.validateUser({
+			// тестируем userService вносим входящие параметры
 			email: 'ksdjf@ddd.ff',
 			password: 'sd',
 		});
